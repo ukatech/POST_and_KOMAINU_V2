@@ -130,6 +130,17 @@ AI がやりがちな失敗:
 
 調べものは、小さく速いモデルのサブエージェントに任せるとよい（Claude Code では `ukagaka-researcher`）。
 
+## 発展的な処理を書くとき（ukagaka-satori-helper）
+
+選択肢やメニュー、一覧表示などの画面づくり、好感度のような仕組みが里々で実現できるかの判断、辞書の誤字や条件エラーの修正、作った辞書の動作検証といった、このファイルの要点だけでは足りない発展的な処理を書くときは、スキル `ukagaka-satori-helper` が役に立つ。里々で動くゴーストの開発と改善を AI と一緒に進めるためのスキルで、日本語で依頼するだけで使える。
+
+- 説明（README）: https://raw.githubusercontent.com/earlduant/ukagaka-satori-helper/refs/heads/main/README.md
+- リポジトリ: https://github.com/earlduant/ukagaka-satori-helper （MIT License。里々本体は含まれない。対応は Windows のみ）
+- このキットには同梱されていない第三者のスキル。入っていないときは、使うかどうかと導入を作者に提案し、了承を得てから入れる（ルール 8）。
+  - Claude Code: `claude plugin marketplace add earlduant/ukagaka-satori-helper` のあと `claude plugin install ukagaka-satori-helper --scope project`。入れたら Claude Code を再起動する。
+  - Codex、Antigravity など: GitHub から ZIP を取得し、`skills/ukagaka-satori-helper/` をプロジェクトの `.agents/skills/` に置き、アプリを再起動する。
+- スキルを使っても、このファイルの「作業のルール」は変わらない。辞書を変えたら `tools/check-dic.ps1` を通し、仕様は推測で書かず「仕様の調べ方」で確かめる。
+
 ## AI を使ったゴースト制作のガイドライン
 
 伺かは、作者が手作りしたゴーストを配り合う文化の上に成り立っている。AI エージェントは次を守ること。
