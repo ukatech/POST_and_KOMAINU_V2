@@ -1,15 +1,15 @@
 # GHOST.md
 
-「ポストと狛犬」に固有の情報です。AI エージェントは、作業の前に `AGENTS.md`（あるとき）とあわせて読みます。
-作者が自由に書き換えるファイルで、開発キットの更新で上書きされることはありません。
+「ポストと狛犬」に固有の情報です。AI エージェントは、作業の前に読みます。
+作者が自由に書き換えるファイルです。
 
 ## このゴーストについて
 
-- 伺か（ukagaka）のゴースト「ポストと狛犬V2」（`ghost/master/descript.txt` の `name`）。SHIORI「里々（SATORI）」の**サンプルゴースト**で、里々の辞書の書き方を、動くゴーストとして見せるためのもの。「里々バイブコーディングツールキット」として、これを土台に自分のゴーストを作ってもらう。
+- 伺か（ukagaka）のゴースト「ポストと狛犬V2」（`ghost/master/descript.txt` の `name`）。SHIORI「里々（SATORI）」の**サンプルゴースト**で、里々の辞書の書き方を、動くゴーストとして見せるためのもの。これを土台に自分のゴーストを作ってもらう。
 - キャラクター: `sakura.name` は「ポスト」、`kero.name` は「狛犬」。
 - 原作者: 櫛ヶ浜やぎ（Yagi Kushigahama、里々の作者）。ゴーストの作者表記（`craftmanw`）は「整備班/櫛ヶ浜やぎ」。里々に同梱されていたサンプルゴーストを、ponapalt と協力者がいまの環境向けに作り直している。
 - SHIORI: `satori.dll`（Unicode 版、内部のバージョン表記は Mc201-11）。文字コードは UTF-8（`descript.txt` の `charset,UTF-8`）。辞書・設定・置換ファイルはすべて UTF-8（BOM なし）、改行は LF。
-- 里々の仕様書: https://github.com/ukatech/satori-docs （`grammar/` 文法、`shiori/` イベントと動作、`functions/` `（）` 内蔵関数、`system/` システム変数、`ssu/` ssu の関数）。里々の構文は推測で書かず、ここで確かめる。
+- 里々の仕様書: https://ukatech.shillest.net/satori-docs/ （`grammar/` 文法、`shiori/` イベントと動作、`functions/` `（）` 内蔵関数、`system/` システム変数、`ssu/` ssu の関数）。里々の構文は推測で書かず、ここで確かめる。
 - `install.txt` は `directory,POST_and_KOMAINU_V2`（インストール先）、`refresh,1`、`refreshundeletemask,satori_savedata.txt`（再インストールでもセーブデータを消さない）。
 - ネットワーク更新の URL は `dic06_String.txt` の `＠homeurl`（`descript.txt` には `homeurl` を書いていない）。いまはコメントアウトしてあり、値は `https://raw.githubusercontent.com/ukatech/POST_and_KOMAINU_V2/main/`（`updates2.dau` を置く場所）。使うときはコメントを外す。
 - ポータルサイト（`＊sakura.portalsites`）は SSP、UKADOC、satori-docs、satoriya-shiori、このリポジトリだけ。おすすめサイトは、昔のものが無くなったので置いていない。メニューに意見の投稿先は置いていない。
@@ -19,7 +19,6 @@
 - **`satori.dll`、`satorite.exe`**: 里々の配布物（https://github.com/ukatech/satoriya-shiori ）。`ghost/master/satori_license.txt` の条件。再配布・改変・ゴーストへの同梱は自由だが、**ライセンス文書を同梱すること**、改変しても**ライセンスを変えてはならない**こと、無保証であること。辞書・設定ファイル・SAORI・画像・`install.txt` などは、このライセンスの対象外。
 - **辞書とサンプルスクリプト**（`dic*.txt`、`satori_conf.txt`、`replace*.txt`）: 原作者（櫛ヶ浜やぎ）が著作権を放棄している（`readme.txt`）。自由に改変・再配布してよい。
 - **シェルの画像**（`shell/master/`）: 辞書と同じく著作権放棄で、自由に改変・再配布してよい（リポジトリの所有者に確認済み）。原作者は櫛ヶ浜やぎ。
-- **`receiver.bat` `receiver.ps1` `receiver.txt`**: ログ受信ウインドウ（旧版の `れしば.exe` の代わり）。開発キットと同じく Public Domain（Unlicense）。
 
 ## 辞書の構成
 
@@ -31,14 +30,14 @@
 - `replace_after.txt`: 応答スクリプトを返す直前の置換。`さんさん`→`さん`、`ちゃんさん`→`ちゃん`、`くんさん`→`くん`（`＄ユーザ名` が敬称で終わっているときに「さん」が重ならないように）、`…` `‥` `・` の直後に `\w3` を足す。**`…` の後ろに `\w3` を手で書かない**（`……` と書けば、置換で自動的に間が入る）。
 - `characters.ini` と `satori_bootconf.txt` は無い。辞書は BOM なしの UTF-8 で、里々が全体を見て UTF-8 と判定している。UTF-8 と明示したいときは、`satori_bootconf.txt` に `is_utf8_all,true` と書く。
 - セーブデータは `satori_savedata.txt`（里々が自動で読み書きする。手で編集しない）。変数は、`＄` で代入したものがすべて保存される。
-- そのほか `ghost/master/` にあるもの: `post.ico`（`icon`）、`satorite.exe` `satorite.txt`（里々の補助ツール）、`receiver.bat` `receiver.ps1` `receiver.txt`（SSP で動いている里々のログを表示するウインドウを開く。`receiver.bat` → `receiver.ps1` → 開発キットの `tools/lib/tamacsw.cs` からビルドした `tamacsw.exe`。キットが無いと動かないので、キットなしの nar には入れない（`auto_release.yml`））。
+- そのほか `ghost/master/` にあるもの: `post.ico`（`icon`）、`satorite.exe` `satorite.txt`（里々の補助ツール）。
 - `shell/master/` が本体のシェル。`shell/` のほかのフォルダは、下の「シェル」を参照。
 
 ## イベントと辞書ファイルの対応
 
 | ファイル（`ghost/master/`） | 主な中身 |
 |---|---|
-| `dic00_System.txt` | `＊OnSatoriLoad`（`＄NOTIFYの自動保存`、文・単語群の重複回避の設定）と、危険なさくらスクリプトを無効にする `＠KillDangerousTag`（`＠DangerousTag` の一覧）。ユーザーの入力を台詞に出すときは `（call（バイト値、１）KillDangerousTag（バイト値、１）（…））` を通す（`＊OnInstallRefuse`）。`＄デバッグ 無効` は書かない（`tools/shiori.ps1 -Eval` のデバッグモードを打ち消すため） |
+| `dic00_System.txt` | `＊OnSatoriLoad`（`＄NOTIFYの自動保存`、文・単語群の重複回避の設定）と、危険なさくらスクリプトを無効にする `＠KillDangerousTag`（`＠DangerousTag` の一覧）。ユーザーの入力を台詞に出すときは `（call（バイト値、１）KillDangerousTag（バイト値、１）（…））` を通す（`＊OnInstallRefuse`）。`＄デバッグ 無効` は書かない（`shiori.ps1 -Eval` のデバッグモードを打ち消すため） |
 | `dic01_Base.txt` | 初回起動（`＊初回`、`＊初回二回目以降`）、起動（`＊起動`。時間帯で `＊朝に起動` などへ分岐）、終了（`＊終了`）、**ランダムトーク**（名前のない `＊`）。選択肢を出すトーク（`＊` から始まり `＿たこ` などの選択肢を持つクイズ）もここ。`＠` で始まる単語群（`＠季節の食べ物` など）の例 |
 | `dic02_Event.txt` | 本体からのイベント。インストール（`OnInstall*`）、シェル変更（`OnShellChanging` `OnShellChanged`）、ネットワーク更新（`OnUpdate*`）、時計合わせ（`OnSNTP*`）、ヘッドライン（`OnHeadlinesense*`）、メールチェック（`OnBIFF*`）、選択肢（`OnChoiceSelect` `OnChoiceTimeout`。引数付きの選択肢 `＿ラベル<タブ>ID<タブ>引数` は `OnChoiceSelectEx` が ID の文を `（call）` で呼び、引数を `（Ａ０）`〜にする。`＊OnChoiceSelect` があると里々は引数を渡さないため）、消滅（`OnVanish*`）、キー入力（`OnKeyPress`）、URL ドロップ（`OnURLDropping` `OnURLDropped`）、`OnUserInput` など。また `OnFirstBoot` `OnBoot` `OnClose` `OnGhostChanged` `OnGhostChanging` から、`＊初回` `＊起動` `＊終了` などへジャンプさせている |
 | `dic03_Menu.txt` | マウス反応（`＊0Headなでられ`、`＊0ころころ` など）と、**メインメニュー**（`＊0つつかれ`。ポストのどこをつついても、当たり判定の名前に関わらずここに来る。`＊OnMouseDoubleClick` が `＞（Ｒ３）つつかれ` で落とす）。喋り頻度の変更、ユーザ名を覚えてもらう `＊名前を覚えてもらう`（入力は `dic02` の `＊OnUserInput` から `＊ユーザ名を教えてもらった` `＊ユーザ名を空打ちされた` `＊ユーザ名をタイムアウト` に来る。空白だけ・17 文字以上は受け付けず、元の名前に戻す）、ランダムトークの追加分もここ |
@@ -179,6 +178,6 @@
 - [ ] 辞書の 1 行目のコメント（`dic1_Base.txt` など、ファイル名が古い）
 - [ ] 実験用の辞書を、使わないなら消す: `dic08_ExEvent.txt`（古い外部アプリ用）、`dic09_Timer.txt`（キッチンタイマー。消すなら `dic03_Menu.txt` のメニューの「キッチンタイマー」と、`satori_conf.txt` の `＄キッチンタイマーＮの分数` も）。`dic02_Event.txt` の `＊rが押された` は、辞書を書くときに便利なので残してもよい
 - [ ] 同梱の `readme.txt` と `install.txt` を、自分のゴースト向けに書き直す（`readme.txt` は原作者の連絡先と配布元 URL のまま）
-- [ ] `satori_license.txt` は、`satori.dll` を同梱する限り、残す。`satorite.exe`、`receiver.*`（と説明文書）は、使わないなら消す
+- [ ] `satori_license.txt` は、`satori.dll` を同梱する限り、残す。`satorite.exe` は、使わないなら消す
 - [ ] クレジットの例:「ポストと狛犬（櫛ヶ浜やぎ、https://github.com/ukatech/POST_and_KOMAINU ）をもとに作成」（URL は実際のものに直す）
 - [ ] この `GHOST.md` を新しいゴーストの内容に書き直し、この節は済んだら消す

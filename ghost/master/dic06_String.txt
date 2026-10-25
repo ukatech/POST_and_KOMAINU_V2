@@ -35,7 +35,7 @@ shiori互換dll『里々（さとり）』用辞書
 1
 
 ＃　ネットワーク更新は、いまは使っていない。使うときは、下の 2 行の頭の＃を外す。
-＃　ゴーストのルート（install.txt があるところ）に、tools/build-nar.ps1 で作った
+＃　ゴーストのルート（install.txt があるところ）に、build-nar.ps1 で作った
 ＃　updates2.dau と updates.txt を置いておく。
 ＃＠homeurl
 ＃https://raw.githubusercontent.com/ukatech/POST_and_KOMAINU_V2/main/
